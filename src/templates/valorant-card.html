@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;600&display=swap');
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1200px;
+            height: 600px;
+            font-family: 'Teko', sans-serif;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 1200px;
+            height: 600px;
+            background-image: url('{{bgImage}}');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(15,25,35,0.98) 0%, rgba(15,25,35,0.95) 45%, rgba(15,25,35,0) 100%);
+        }
+
+        .status-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 12px; }
+        .win .status-bar { background-color: #00ff9d; box-shadow: 0 0 20px #00ff9d; }
+        .lose .status-bar { background-color: #ff4655; box-shadow: 0 0 20px #ff4655; }
+        .deathmatch .status-bar { background-color: #00eaff; box-shadow: 0 0 20px #00eaff; }
+
+        .rank-icon {
+            position: absolute;
+            top: 40px;
+            left: 50px; 
+            width: 90px;
+            height: 90px;
+            z-index: 10;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.8));
+        }
+
+        .agent-img {
+            position: absolute;
+            right: 0;
+            top: 0; 
+            height: 100%;
+            z-index: 1;
+            filter: drop-shadow(-15px 0 25px rgba(0,0,0,0.7));
+        }
+
+        .content {
+            position: absolute;
+            left: 50px;
+            top: 140px;
+            z-index: 5;
+            width: 750px;
+            color: white;
+        }
+
+        .header {
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+            width: 100%;
+        }
+
+        .username {
+            font-size: 82px;
+            line-height: 0.8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tag { font-size: 44px; color: #8b9bb4; font-weight: 300; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+            width: 600px;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.06);
+            padding: 8px 18px;
+            border-radius: 4px;
+            border-left: 4px solid #888;
+        }
+
+        .win .stat-box { border-color: #00ff9d; }
+        .lose .stat-box { border-color: #ff4655; }
+        .deathmatch .stat-box { border-color: #00eaff; }
+
+        .stat-label { font-size: 18px; color: #8b9bb4; text-transform: uppercase; margin-bottom: -2px; }
+        .stat-value { font-size: 42px; font-weight: 400; }
+
+        .comment-box {
+            position: absolute;
+            bottom: -65px; 
+            left: 0; 
+            
+            font-size: 28px;
+            font-style: italic;
+            color: #ffce00; 
+            text-shadow: 0 2px 5px rgba(0,0,0,1);
+            display: flex;
+            align-items: center;
+            max-width: 400px;
+        }
+
+        .comment-box::after {
+            content: ' '; 
+        }
+
+        .footer-info {
+            position: absolute;
+            bottom: -70px; 
+            left: 310px;
+            
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            
+            border-left: 3px solid #ffce00; 
+            padding-left: 15px;
+        }
+
+        .footer-main { 
+            font-size: 24px; 
+            color: #ffffff; 
+            letter-spacing: 2px; 
+            font-weight: 600;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .footer-sub { 
+            font-size: 18px; 
+            color: #8b9bb4; 
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 2px;
+            white-space: nowrap;
+        }
+
+        .result-badge { 
+            display: inline-block; 
+            padding: 2px 12px; 
+            font-size: 22px; 
+            font-weight: bold; 
+            margin-bottom: 8px; 
+            border-radius: 4px;
+        }
+        .win .result-badge { background: rgba(0, 255, 157, 0.15); color: #00ff9d; border: 1px solid #00ff9d; }
+        .lose .result-badge { background: rgba(255, 70, 85, 0.15); color: #ff4655; border: 1px solid #ff4655; }
+        .deathmatch .result-badge { background: rgba(0, 234, 255, 0.15); color: #00eaff; border: 1px solid #00eaff; }
+
+    </style>
+</head>
+<body>
+    <div class="container {{themeClass}}">
+        <div class="overlay"></div>
+        <div class="status-bar"></div>
+        
+        <img src="{{rankIcon}}" class="rank-icon" alt="Rank">
+        <img src="{{agentImage}}" class="agent-img" alt="Agent">
+
+        <div class="content">
+            {{#unless isDeathmatch}}
+            <div class="result-badge">
+                {{#if isWin}}ZAFER{{else}}BOZGUN{{/if}}
+            </div>
+            {{/unless}}
+            
+            <div class="header">
+                <h1 class="username">{{username}} <span class="tag">#{{tag}}</span></h1>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">SKOR (KDA)</div>
+                    <div class="stat-value">{{score}}</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">KD ORANI</div>
+                    <div class="stat-value">{{kdRatio}}</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">HASAR/TUR</div>
+                    <div class="stat-value">{{damage}}</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">KAFA (HS)</div>
+                    <div class="stat-value">%{{hsRate}}</div>
+                </div>
+            </div>
+
+            <div class="comment-box">
+                "{{funnyComment}}" 
+            </div>
+
+            <div class="footer-info">
+                <div class="footer-main">{{matchMap}} • {{matchMode}}</div>
+                <div class="footer-sub">{{region}} SUNUCUSU</div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

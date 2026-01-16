@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+        :root {
+            --fox-orange: #ff6d00;
+            --blow-blue: #00e5ff;
+            --bg-dark: #060b13;
+            --row-bg: rgba(18, 30, 45, 0.6);
+            --gold: #ffb800;
+            --silver: #e0e0e0;
+            --bronze: #cd7f32;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0; padding: 0;
+            width: 800px; height: 600px; 
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .bg-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255, 109, 0, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(0, 229, 255, 0.1) 0%, transparent 40%),
+                linear-gradient(rgba(6, 11, 19, 0.8), rgba(6, 11, 19, 0.9)),
+                url('https://i.ibb.co/kggRjRZT/new-map-called-corrode-v0-xfne0bw81c8f1.png');
+            background-size: cover;
+            z-index: 0;
+        }
+
+        .container {
+            width: 740px;
+            position: relative; z-index: 2;
+        }
+
+        .header {
+            display: flex; align-items: flex-end; justify-content: space-between;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .title-main {
+            font-size: 40px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 3px; line-height: 1;
+            background: linear-gradient(to right, #fff, var(--fox-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 14px; letter-spacing: 5px; color: var(--blow-blue);
+            text-transform: uppercase; font-weight: 600; margin-top: 5px;
+        }
+
+        .player-list { display: flex; flex-direction: column; gap: 8px; }
+
+        .player-row {
+            display: flex; align-items: center;
+            height: 42px;
+            background: var(--row-bg);
+            border-radius: 8px; 
+            padding: 0 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rank-tag {
+            width: 35px; font-size: 22px; font-weight: 700;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .player-info { flex-grow: 1; display: flex; align-items: baseline; gap: 6px; }
+        .p-name { font-size: 22px; font-weight: 600; text-transform: uppercase; }
+        .p-tag { color: var(--fox-orange); font-size: 16px; font-weight: 500; }
+
+        .p-stats { display: flex; align-items: center; gap: 20px; }
+        .p-rr { 
+            color: var(--blow-blue); font-size: 20px; font-weight: 700; 
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+        }
+        .p-wins { 
+            font-size: 16px; color: rgba(255,255,255,0.5); 
+            background: rgba(255,255,255,0.05);
+            padding: 2px 10px; border-radius: 4px;
+        }
+
+        .player-row:nth-child(1) {
+            background: linear-gradient(90deg, rgba(255, 184, 0, 0.1), var(--row-bg));
+            border: 1px solid rgba(255, 184, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 184, 0, 0.1);
+        }
+        .player-row:nth-child(1) .rank-tag { color: var(--gold); text-shadow: 0 0 8px var(--gold); }
+        .player-row:nth-child(1) .p-name { color: var(--gold); }
+
+        .player-row:nth-child(2) {
+            border: 1px solid rgba(224, 224, 224, 0.2);
+        }
+        .player-row:nth-child(2) .rank-tag { color: var(--silver); }
+
+        .player-row:nth-child(3) {
+            border: 1px solid rgba(205, 127, 50, 0.2);
+        }
+        .player-row:nth-child(3) .rank-tag { color: var(--bronze); }
+
+        .footer-decor {
+            display: flex; justify-content: center; gap: 10px; margin-top: 15px;
+        }
+        .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--fox-orange); opacity: 0.5; }
+
+    </style>
+</head>
+<body>
+    <div class="bg-container"></div>
+
+    <div class="container">
+        <div class="header">
+            <div>
+                <div class="title-main">AVRUPA TOP 10</div>
+                <div class="subtitle">RADYANT // SYSTEM ONLINE</div>
+            </div>
+            <div style="text-align: right;">
+                <div style="color: var(--fox-orange); font-size: 12px; font-weight: 700;">STATUS: ACTIVE</div>
+                <div style="font-size: 18px; opacity: 0.6;">EU_NORTH_1</div>
+            </div>
+        </div>
+
+        <div class="player-list">
+            {{#each players}}
+            <div class="player-row">
+                <div class="rank-tag">#{{this.rank}}</div>
+                <div class="player-info">
+                    <span class="p-name">{{this.gameName}}</span>
+                    <span class="p-tag">#{{this.tagLine}}</span>
+                </div>
+                <div class="p-stats">
+                    <div class="p-rr">{{this.rankedRating}} RR</div>
+                    <div class="p-wins">{{this.numberOfWins}} W</div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <div class="footer-decor">
+            <div class="dot"></div>
+            <div class="dot" style="opacity: 0.8;"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+</body>
+</html>

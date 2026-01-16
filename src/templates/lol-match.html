@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+        
+        body { 
+            margin: 0; padding: 0; 
+            width: 800px; height: 350px; 
+            font-family: 'Rajdhani', sans-serif; 
+            background-color: #060b13; 
+            display: flex; justify-content: center; align-items: center; 
+        }
+        
+        .container {
+            width: 800px; height: 350px;
+            background: #060b13; 
+            position: relative; overflow: hidden;
+            display: flex;
+            border-left: 8px solid #555;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .container.win { 
+            border-left-color: #00e5ff; 
+            background: linear-gradient(90deg, rgba(0, 229, 255, 0.15), #060b13 50%); 
+        }
+        .container.win .bg-splash { border-right: 2px solid rgba(0, 229, 255, 0.3); }
+
+        .container.lose { 
+            border-left-color: #ff4655; 
+            background: linear-gradient(90deg, rgba(255, 70, 85, 0.15), #060b13 50%); 
+        }
+        .container.lose .bg-splash { border-right: 2px solid rgba(255, 70, 85, 0.3); }
+
+        .bg-splash {
+            position: absolute; right: -20px; top: 0; width: 65%; height: 100%;
+            background-image: url('{{splashImage}}');
+            background-size: cover; background-position: center;
+            mask-image: linear-gradient(to right, transparent 0%, black 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 5%, black 40%);
+            opacity: 0.7; z-index: 0;
+            transform: skewX(-10deg); 
+            filter: contrast(1.1) saturate(1.1);
+        }
+
+        .grid-overlay {
+            position: absolute; top:0; left:0; width:100%; height:100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.1; z-index: 1; pointer-events: none;
+        }
+
+        .content { 
+            z-index: 2; padding: 40px; 
+            display: flex; flex-direction: column; justify-content: center; 
+            width: 60%; 
+        }
+
+        .header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        
+        .result-badge { 
+            padding: 4px 18px; 
+            border-radius: 4px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-size: 24px;
+            clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+        }
+        
+        .win .result-badge { 
+            background: rgba(0, 229, 255, 0.1); 
+            color: #00e5ff; 
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+            border-left: 2px solid #00e5ff;
+        }
+        
+        .lose .result-badge { 
+            background: rgba(255, 70, 85, 0.1); 
+            color: #ff4655; 
+            box-shadow: 0 0 15px rgba(255, 70, 85, 0.2);
+            border-left: 2px solid #ff4655;
+        }
+        
+        .game-info { 
+            color: #8899ac; 
+            font-size: 16px; 
+            font-weight: 600; 
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .stats-row { display: flex; align-items: flex-end; gap: 30px; margin-bottom: 20px; }
+        
+        .kda-box { 
+            font-size: 52px; font-weight: 700; color: #fff; line-height: 0.9; 
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+        }
+        
+        .kda-sub { 
+            font-size: 18px; color: #ff6d00;
+            font-weight: 600; letter-spacing: 1px; margin-top: 5px;
+        }
+        
+        .farm-box { 
+            font-size: 28px; font-weight: 600; color: #ece8e1; 
+            border-left: 2px solid rgba(255,255,255,0.1); padding-left: 15px;
+        }
+
+        .items-row { display: flex; gap: 6px; margin-bottom: 20px; }
+        .item-img { 
+            width: 48px; height: 48px; 
+            border-radius: 6px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            background: #010a13; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .player-name {
+            position: absolute; bottom: 15px; right: 20px; z-index: 2;
+            font-size: 48px; font-weight: 800; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(to top, #ff6d00, rgba(255,255,255,0.8));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.9;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .funny-comment {
+            font-size: 16px; font-weight: 500; color: #b0bec5;
+            background: rgba(15, 25, 35, 0.8); 
+            padding: 10px 15px; 
+            border-radius: 0 8px 8px 8px;
+            width: fit-content; 
+            border-left: 3px solid #ff6d00; 
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container {{resultClass}}">
+        <div class="grid-overlay"></div>
+        <div class="bg-splash"></div>
+        
+        <div class="content">
+            <div class="header">
+                <div class="result-badge">{{resultText}}</div>
+                <div class="game-info">{{gameMode}} • {{gameDuration}}</div>
+            </div>
+
+            <div class="stats-row">
+                <div>
+                    <div class="kda-box">{{kills}} / {{deaths}} / {{assists}}</div>
+                    <div class="kda-sub">{{kdaRatio}} KDA</div>
+                </div>
+                <div class="farm-box">
+                    <div>{{cs}} CS</div>
+                    <div style="font-size: 14px; color:#ff6d00; font-weight: 500;">({{csPerMin}} / dk)</div>
+                </div>
+            </div>
+
+            <div class="items-row">
+                {{#each items}}
+                    <img src="{{this}}" class="item-img" onerror="this.style.display='none'">
+                {{/each}}
+            </div>
+
+            <div class="funny-comment">"{{funnyComment}}"</div>
+        </div>
+
+        <div class="player-name">{{championName}}</div>
+    </div>
+</body>
+</html>
