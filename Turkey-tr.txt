@@ -1,0 +1,84 @@
+================================================================================
+          📁 [SİSTEM GÜNCELLEMESİ: FOXOPS v3.0 ONLINE] 📁
+================================================================================
+
+Ajanlar, bekleyiş sona erdi! Sunucumuzun altyapısı tamamen yenilendi ve FOXOPS v3.0 
+işletim sistemi devreye alındı. Artık sadece bir botumuz yok; yaşayan, tepki veren 
+ve sizi ödüllendiren fütüristik bir asistanımız var.
+
+--------------------------------------------------------------------------------
+🚀 TAM LİSTE CEPHANELİK (TÜM FONKSİYONLAR)
+--------------------------------------------------------------------------------
+
+🔗 [ NEURAL LINK (DUO) SİSTEMİ ]
+   - Komut: /Duo
+   - Detay: Partnerini seç, Neural bağlantıyı kur. Aynı seste veya oyunda takılın, 
+     paraları x2 katlayın. Tek tabanca takılana ekmek yok, Duo'su olana huzur var!
+
+📜 [ DAILY CONTRACTS (AJAN KONTRATLARI) ]
+   - Komut: /görevler
+   - Detay: Günlük yenilenen görevler. "50 mesaj at", "3 yazı tura oyna" gibi 
+     hedefleri bitir, Coinleri kap. Valorant Battlepass'inden daha adil!
+
+🏷️ [ DYNAMIC TAGS (OTOMATİK KÜNYE) ]
+   - Sistem: Otomatik Gözetim
+   - Detay: Sesteyken [MIC], LoL'deyken [LoL], Valorant'tayken [VAL] etiketini 
+     ismine mühürler. Kimin ne halt yediği belli olsun!
+
+🎮 [ RIOT GAMES INTELLIGENCE ]
+   - Komutlar: /valo-profil, /valo-son5, /lol-profil, /lol-canli
+   - Detay: Maç geçmişini, rankını ve canlı oyun durumunu anlık çek. Rakibin 
+     rankına bakıp önceden ağlama özelliğimiz henüz test aşamasında!
+
+🎰 [ CASINO & EKONOMİ SİSTEMİ ]
+   - Komutlar: /slots, /yazi-tura, /bahis, /kasa, /soygun
+   - Detay: Bakiye ile kumar oyna veya arkadaşlarını soy. Ama dikkat et, 
+     yanlış kişiyi soymaya kalkarsan elinde patlayabilir!
+
+🎨 [ CYBER GRAFFITI & PROFILES ]
+   - Komutlar: /imzala, /profil, /tema-sec
+   - Detay: Arkadaşlarının profilini imzala, kendi profil kartını neon temalarla 
+     süslendir. Sunucuda havan olsun!
+
+📰 [ MISSION REPORT (CANLI HABERLER) ]
+   - Komut: /haberler
+   - Detay: Riot Games ve oyun dünyasından anlık, canlı istihbarat raporları. 
+     Ajanlarımız RSS üzerinden en taze bilgileri sızdırıyor.
+
+📦 [ TACTICAL AIRDROP (İKMAL SANDIĞI) ]
+   - Sistem: %10 Olasılıklı Global Event
+   - Detay: Sohbete aniden sandık düşer. İlk "AL" yazan kaptı, klavyesi yavaş 
+     olan anca giden Coinlerin arkasından bakar.
+
+🏆 [ TOURNAMENT BRACKET ]
+   - Komut: /turnuva
+   - Detay: Profesyonel eşleşme ağacı. Torpil yok, kura var. E-spor arenasının 
+     adaleti FOXOPS ile sunucuda!
+
+💰 [ PASSIVE MINING ]
+   - Sistem: 30 Dakikalık Periyotlar
+   - Detay: Seste durduğun veya oyun oynadığın sürece FOXOPS cüzdanına gizlice 
+     Coin damlatır. Yatarak zengin olmak hiç bu kadar dijital olmamıştı.
+
+--------------------------------------------------------------------------------
+🛡️ YASAL UYARI VE LİSANS
+--------------------------------------------------------------------------------
+Bu sistemin tüm algoritması, komut dizinleri ve görsel tasarımları FOX CODE & 
+OBS FIXER tarafından optimize edilmiştir.
+
+⚠️ [YASAL NOT]: FOXOPS v3.0 yazılımının tüm hakları FOX (Gamer FOXOPS) bünyesinde 
+saklıdır. Kodların izinsiz kopyalanması veya manipüle edilmesi durumunda sistem 
+kendini imha etmez ama biz sizi buluruz... 
+
+İzinsiz kullananın:
+- Crosshair'i en önemli maçta kaysın.
+- Pingi 999'dan aşağı inmesin.
+- Yasuo'su 0/10 beslemeye devam etsin!
+
+[SİSTEM DURUMU]: STABLE (KARARLI / CANAVAR GİBİ)
+[YETKİLİ İMZA]: FOX (Gamer FOXOPS)
+
+Sohbet et, oyun oyna ve sunucunun en zengini sen ol. İyi şanslar ajan.
+--------------------------------------------------------------------------------
+© 2026 FOXOPS Project. All Rights Reserved.
+================================================================================
